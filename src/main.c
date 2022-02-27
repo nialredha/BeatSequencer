@@ -103,7 +103,7 @@ int main() {
 	
 		printf("\n");
 		printf("Enter Command: ");
-		scanf("%X", &command);
+		scanf("%d", &command);
 	
 		printf("\n");
 		switch(command) {
