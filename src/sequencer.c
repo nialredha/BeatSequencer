@@ -45,15 +45,15 @@ void load_default_samples() {
 	printf("\nLet's Load Some Sounds\n");
 	printf("--------------------------------\n");
 
-    char* file_path = "samples/kick.wav";
+    char* file_path = "../samples/kick.wav";
 	kickData = retrieve_data(&kick, file_path);
 	printf("From here on out, the kick = 0\n");
 
-    char* file_path_2 = "samples/hihat.wav";
+    char* file_path_2 = "../samples/hihat.wav";
 	hihatData = retrieve_data(&hihat, file_path_2);
 	printf("From here on out, the hihat = 1\n");
 
-    char* file_path_3 = "samples/snare.wav";
+    char* file_path_3 = "../samples/snare.wav";
 	snareData = retrieve_data(&snare, file_path_3);
 	printf("From here on out, the snare = 2\n");
 

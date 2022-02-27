@@ -3,7 +3,7 @@
 # make run		# run executable
 # make clean	# remove ALL binaries
 
-BUILD_DIR = build/
+BUILD_DIR = ../build/
 
 LINKER_FLAG = -lm
 
@@ -15,11 +15,11 @@ COM = complex.c
 
 sequencer: ${WAV} ${SEQ} main.c
 	[ -d ${BUILD_DIR} ] || mkdir -p ${BUILD_DIR}
-	gcc  -o build/sequencer ${WAV} ${FFT} ${FIL} ${SEQ} ${COM} main.c ${LINKER_FLAG}
+	gcc  -o ../build/sequencer ${WAV} ${FFT} ${FIL} ${SEQ} ${COM} main.c ${LINKER_FLAG}
 
 run:
-	./build/sequencer
+	./../build/sequencer
 
 clean:
 	@echo "Cleaning up..."
-	rm build/*
+	rm ../build/*
