@@ -9,10 +9,9 @@
 */
 
 
-/* Note from me:**************************************************************
+/* Note:*********************************************************************
 
-   The first 5 skeleton functions were written by  http://oztekin.net/ !!
-   I only slightly modified it by adding read_wav_data()
+   The first 5 functions were written by  http://oztekin.net/ !!
 
 *****************************************************************************/
 

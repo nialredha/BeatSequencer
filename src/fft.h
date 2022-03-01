@@ -3,13 +3,9 @@
 
 #include "complex.h"
 
-/* Module with basic DFT, FFT, and IFFT. Supports both real and complex inputs
-   and only floating point. 
+/* Contains basic DFT, FFT, and IFFT. Supports both real and complex inputs
+   but only floating point. 
 */ 
-
-// TODO: Should I only keep the dft/fft functions that accept complex inputs? 
-// I don't see the advantage of having them accept real inputs. Need to think
-// about this. 
 
 // Function Declarations 
 

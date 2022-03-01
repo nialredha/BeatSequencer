@@ -1,13 +1,6 @@
 #ifndef FILTERS_H_	// include guard
 #define FILTERS_H_
 
-#include <stdint.h>
-#include <stdio.h>
-#include <time.h>
-
-#include "fft.h"
-#include "wav.h"
-
 /* 
 	Module to digitally process wav signals using a variety of filters
 
@@ -17,6 +10,14 @@
 
 	https://www.meoworkshop.org/silly-audio-processing-6/
 */
+
+#include <stdint.h>
+#include <stdio.h>
+#include <time.h>
+
+#include "fft.h"
+#include "wav.h"
+
 
 // number of allpass and feedback comb filters in shroeder reverberator 
 #define NUM_APCFS 3
