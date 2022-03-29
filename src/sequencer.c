@@ -4,44 +4,22 @@
 #include "sequencer.h"
 #include "wav.h"
 
-// Load WAV Samples 
-// ----------------
-// Where should the data be? I do not know... 
-// One long array? And pointers to the start of each set of data? Probably
-// the way to go. 
-
-// For now, the sequencer will default load a kick, hihat and snare - still 
-// need to figure out how to handle not knowing the amount and type of sounds
-// that will be loaded. I think one long array is how this will be possible. 
-
-// Let's think about this. I could have the "Load WAV Samples" command load 
-// a new sample onto an array... wait isn't there a data type for this?
-
-// I guess there are a lot of options to choose from here...
-// I need to be able to append large amounts of data and easily access them.  
-
-// I don't know the answer right now. I need to make a bad implementation so 
-// I can get a better look at what I am even trying to do. 
-
 wav_info kick;
 wav_info hihat;
 wav_info snare;
 
-float *kickData, *hihatData, *snareData;
+float *kickData, *hihatData, *snareData;	// pointers to the 3 samples
+int *sequence;	// pointer to the beat sequence
 
-int num_bars = 16;	// total number of bars
-int time_sig = 4;	// beats per bar
-int num_beats = 64;	// total number of beats (num_bars * time_sig)
-int bpm = 240;		// beats per minute
-int resolution = 1;	// number of beats between each beat
+int bpm = DEFUALT_BPM;					// beats per minute
+int time_sig = DEFAULT_TIME_SIG;		// beats per bar
+int num_bars = DEFAULT_NUM_BARS;		// total number of bars
+int num_beats = DEFUALT_NUM_BEATS;		// total number of beats
+int resolution = DEFAULT_RESOLUTION;	// number of beats between each beat
 
-int *sequence;
 
 void load_default_samples() {
 	
-	// TODO: Edit retrieve_data to accept a file dir so that I don't have to
-	//		 input the relatiove dirs everytime while I am testing code
-
 	printf("\nLet's Load Some Sounds\n");
 	printf("--------------------------------\n");
 
@@ -61,9 +39,6 @@ void load_default_samples() {
 
 void load_samples() {
 	
-	// TODO: Edit retrieve_data to accept a file dir so that I don't have to
-	//		 input the relatiove dirs everytime while I am testing code
-
 	printf("\nLet's Load Some Sounds\n");
 	printf("--------------------------------\n");
 
@@ -88,9 +63,19 @@ void load_samples() {
 	snareData = retrieve_data(&snare, file_path_3);
 	printf("From here on out, Sample 2 = 2\n");
 
+
+	if (kick.num_channels != hihat.num_channels ||
+		kick.num_channels != snare.num_channels ||
+		hihat.num_channels != snare.num_channels) 
+	{
+		printf("\n");
+		printf("Some samples are mono and some are stereo...\n");
+		printf("Exiting Program...\n\n");
+		exit(0);
+	}
+
 }
 
-// Set BPM
 void set_bpm() {
 
 	printf("\n");
@@ -164,6 +149,7 @@ void export_to_wav() {
 
 	int samples_per_beat = (int)(sec_per_beat * (float)output.sample_rate);
 
+	// allocate memory for the beat sequence
 	float *outputData = (float *)malloc(sizeof(float)*(output.num_samples*output.num_channels));
 	if(outputData == NULL) { return; }
 
